@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Gabriel Carlo Zagala</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo" title="Home">
+      <i class="fa-solid fa-code"></i>
+    </a>
+    <div class="nav-links">
+      <a href="about.html">about</a>
+      <a href="index.html">portfolio</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <!-- ABOUT -->
+  <main class="page-main about-main">
+    <div class="about-left">
+      <h1 class="page-title">about<span class="dot">.</span></h1>
+      <p>I'm an entry-level programmer based in the Philippines.</p>
+      <p>I enjoy building clean, simple web applications and I'm always looking to learn more. When I'm not coding, you'll find me hanging out with friends.</p>
+      <p>Currently growing my skills in PHP, JavaScript, and web development.</p>
+    </div>
+    <div class="about-right">
+      <div class="photo-placeholder">
+        <i class="fa-solid fa-user"></i>
+        <span>Your photo here</span>
+      </div>
+    </div>
+  </main>
+    <br><br>
+    <div class="projects-divider">
+      <span>Recent Projects</span>
+    </div>
+
+    <div>OJT tracking <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+    <div></div>
+    <div></div>
+  
+    <footer class="footer">
+    <span>&copy; 2026 Gabriel Carlo Zagala</span>
+    <div class="footer-icons">
+      <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" title="Gmail"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+    </footer>
+
+  <script>
+    // Active nav link detection
+    const current = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.getAttribute('href') === current) link.classList.add('active');
+    });
+
+    // Entrance animations
+    const nl = document.querySelector('.navbar');
+    const al = document.querySelector('.about-left');
+    const ar = document.querySelector('.about-right');
+    const ft = document.querySelector('.footer');
+
+    document.body.style.overflowY = 'hidden';
+
+    nl.style.cssText = 'opacity:0; transform:translateY(-100%); transition:none';
+    al.style.cssText = 'opacity:0; transform:translateX(-100vw); transition:none';
+    ar.style.cssText = 'opacity:0; transform:translateX(100vw); transition:none';
+    ft.style.cssText = 'opacity:0; transform:translateY(100%); transition:none';
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        nl.style.cssText = 'opacity:1; transform:translateY(0); transition: opacity 0.6s ease, transform 0.6s ease';
+      }, 100);
+      setTimeout(() => {
+        al.style.cssText = 'opacity:1; transform:translateX(0); transition: opacity 0.4s ease, transform 0.4s ease';
+        ar.style.cssText = 'opacity:1; transform:translateX(0); transition: opacity 0.4s ease, transform 0.4s ease';
+      }, 400);
+      setTimeout(() => {
+        ft.style.cssText = 'opacity:1; transform:translateY(0); transition: opacity 0.5s ease, transform 0.5s ease';
+      }, 700);
+      setTimeout(() => {
+        document.body.style.overflowY = '';
+      }, 1300);
+    });
+  </script>
+</body>
+</html>

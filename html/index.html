@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel Carlo Zagala</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob.visible {
+      animation: blobIn 1s ease forwards;
+    }
+    @keyframes blobIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 0.30; transform: scale(1); }
+    }
+    .navbar, .hero, .footer, section {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BLOBS -->
+  <div class="blob" style="width:520px; height:520px; background:#93c5fd; top:-120px; left:-160px;"></div>
+  <div class="blob" style="width:420px; height:420px; background:#a5b4fc; bottom:40px; right:-80px;"></div>
+  <div class="blob" style="width:320px; height:320px; background:#7dd3fc; top:55%; left:18%;"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo" title="Home">
+      <i class="fa-solid fa-code"></i>
+    </a>
+    <div class="nav-links">
+      <a href="about.html">about</a>
+      <a href="index.html">portfolio</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <main class="hero">
+    <div class="hero-left">
+      <h1 class="hero-title">developer<span class="dot">.</span></h1>
+      <p class="hero-sub">Entry-level programmer who writes clean, simple, and readable code — with some backend experience as well.</p>
+    </div>
+    <div class="hero-right">
+      <img src="../images/FlightReacts.jpg" alt="Gabriel Carlo Zagala" class="hero-photo">
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 Gabriel Carlo Zagala</span>
+    <div class="footer-icons">
+      <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" title="Gmail"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const current = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.getAttribute('href') === current) link.classList.add('active');
+    });
+
+    const nl = document.querySelector('.navbar');
+    const hl = document.querySelector('.hero-left');
+    const hr = document.querySelector('.hero-right');
+    const ft = document.querySelector('.footer');
+    const blobs = document.querySelectorAll('.blob');
+
+    document.body.style.overflowY = 'hidden';
+
+    nl.style.cssText = 'opacity:0; transform:translateY(-100%); transition:none';
+    hl.style.cssText = 'opacity:0; transform:translateX(-100vw); transition:none';
+    hr.style.cssText = 'opacity:0; transform:translateX(100vw); transition:none';
+    ft.style.cssText = 'opacity:0; transform:translateY(100%); transition:none';
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        nl.style.cssText = 'opacity:1; transform:translateY(0); transition: opacity 0.6s ease, transform 0.6s ease';
+      }, 100);
+      setTimeout(() => {
+        hl.style.cssText = 'opacity:1; transform:translateX(0); transition: opacity 0.4s ease, transform 0.4s ease';
+        hr.style.cssText = 'opacity:1; transform:translateX(0); transition: opacity 0.4s ease, transform 0.4s ease';
+      }, 400);
+      setTimeout(() => {
+        ft.style.cssText = 'opacity:1; transform:translateY(0); transition: opacity 0.5s ease, transform 0.5s ease';
+      }, 700);
+      setTimeout(() => {
+        document.body.style.overflowY = '';
+      }, 1300);
+      setTimeout(() => {
+        blobs.forEach((blob, i) => {
+          setTimeout(() => blob.classList.add('visible'), i * 200);
+        });
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
