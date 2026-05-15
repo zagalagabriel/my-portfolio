@@ -3,12 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — Gabriel Carlo Zagala</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <title>Gabriel Carlo Zagala</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob.visible {
+      animation: blobIn 1s ease forwards;
+    }
+    @keyframes blobIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 0.30; transform: scale(1); }
+    }
+    .navbar, .hero, .footer, section {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- BLOBS -->
+  <div class="blob" style="width:520px; height:520px; background:#93c5fd; top:-120px; left:-160px;"></div>
+  <div class="blob" style="width:420px; height:420px; background:#a5b4fc; bottom:40px; right:-80px;"></div>
+  <div class="blob" style="width:320px; height:320px; background:#7dd3fc; top:55%; left:18%;"></div>
 
   <nav class="navbar">
     <a href="index.html" class="nav-logo" title="Home">
@@ -21,47 +47,13 @@
     </div>
   </nav>
 
-  <!-- CONTACT -->
-  <main class="page-main contact-main">
-    <div class="contact-left">
-      <h1 class="page-title">contact<span class="dot">.</span></h1>
-      <p>Get in touch with me via social media or send me an email.</p>
-
-      <div class="contact-links">
-        <a href="#" class="contact-item facebook">
-          <i class="fa-brands fa-facebook"></i>
-          <span>Facebook</span>
-        </a>
-        <a href="#" class="contact-item gmail">
-          <i class="fa-solid fa-phone"></i>
-          <span>0916-674-4636</span>
-        </a>
-        <a href="#" class="contact-item linkedin">
-          <i class="fa-brands fa-linkedin"></i> 
-          <span>LinkedIn</span>
-        </a>
-        <a href="#" class="contact-item github">
-          <i class="fa-brands fa-github"></i>
-          <span>GitHub</span>
-        </a>
-      </div>
+  <main class="hero">
+    <div class="hero-left">
+      <h1 class="hero-title">developer<span class="dot">.</span></h1>
+      <p class="hero-sub">Entry-level programmer who writes clean, simple, and readable code — with some backend experience as well.</p>
     </div>
-
-    <div class="contact-right">
-      <h2 class="form-title">Send me an email</h2>
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" placeholder="Your name">
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="Your email">
-      </div>
-      <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Your message"></textarea>
-      </div>
-      <button class="send-btn">Send email</button>
+    <div class="hero-right">
+      <img src="../images/FlightReacts.jpg" alt="Gabriel Carlo Zagala" class="hero-photo">
     </div>
   </main>
 
@@ -75,23 +67,22 @@
   </footer>
 
   <script>
-    // Active nav link detection
     const current = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-links a').forEach(link => {
       if (link.getAttribute('href') === current) link.classList.add('active');
     });
 
-    // Entrance animations
     const nl = document.querySelector('.navbar');
-    const cl = document.querySelector('.contact-left');
-    const cr = document.querySelector('.contact-right');
+    const hl = document.querySelector('.hero-left');
+    const hr = document.querySelector('.hero-right');
     const ft = document.querySelector('.footer');
+    const blobs = document.querySelectorAll('.blob');
 
     document.body.style.overflowY = 'hidden';
 
     nl.style.cssText = 'opacity:0; transform:translateY(-100%); transition:none';
-    cl.style.cssText = 'opacity:0; transform:translateX(-100vw); transition:none';
-    cr.style.cssText = 'opacity:0; transform:translateX(100vw); transition:none';
+    hl.style.cssText = 'opacity:0; transform:translateX(-100vw); transition:none';
+    hr.style.cssText = 'opacity:0; transform:translateX(100vw); transition:none';
     ft.style.cssText = 'opacity:0; transform:translateY(100%); transition:none';
 
     window.addEventListener('load', () => {
@@ -99,8 +90,8 @@
         nl.style.cssText = 'opacity:1; transform:translateY(0); transition: opacity 0.6s ease, transform 0.6s ease';
       }, 100);
       setTimeout(() => {
-        cl.style.cssText = 'opacity:1; transform:translateX(0); transition: opacity 0.4s ease, transform 0.4s ease';
-        cr.style.cssText = 'opacity:1; transform:translateX(0); transition: opacity 0.4s ease, transform 0.4s ease';
+        hl.style.cssText = 'opacity:1; transform:translateX(0); transition: opacity 0.4s ease, transform 0.4s ease';
+        hr.style.cssText = 'opacity:1; transform:translateX(0); transition: opacity 0.4s ease, transform 0.4s ease';
       }, 400);
       setTimeout(() => {
         ft.style.cssText = 'opacity:1; transform:translateY(0); transition: opacity 0.5s ease, transform 0.5s ease';
@@ -108,6 +99,11 @@
       setTimeout(() => {
         document.body.style.overflowY = '';
       }, 1300);
+      setTimeout(() => {
+        blobs.forEach((blob, i) => {
+          setTimeout(() => blob.classList.add('visible'), i * 200);
+        });
+      }, 1000);
     });
   </script>
 </body>
